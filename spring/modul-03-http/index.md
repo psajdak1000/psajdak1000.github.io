@@ -14,7 +14,7 @@ title: Moduł 03 — HTTP
 - Lesson 03.01 — Welcome
 - Lesson 03.02 — Practical Application – Starting Implementation in the Project
 - Lesson 03.03 — Using the Feign Library for HTTP Communication
-- - [OpenFeign — podstawy](openfeign.md)
+- [OpenFeign — podstawy](openfeign.md)
 - Lesson 03.04 — Using the RestTemplate Library for HTTP Communication
 - Lesson 03.05 — Using the WebClient Library for HTTP Communication
 - Lesson 03.06 — URL Configuration
