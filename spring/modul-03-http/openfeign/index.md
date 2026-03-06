@@ -36,3 +36,4 @@ W `pom.xml` dodaj:
   <groupId>org.springframework.cloud</groupId>
   <artifactId>spring-cloud-starter-openfeign</artifactId>
 </dependency>
+```
