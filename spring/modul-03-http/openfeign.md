@@ -1,3 +1,9 @@
+
+---
+title: OpenFeign — podstawy
+permalink: /spring/modul-03-http/openfeign/
+---
+
 # OpenFeign (Spring Cloud) – podstawy
 
 **OpenFeign** to biblioteka, która pozwala wywoływać inne API HTTP w Springu w prosty sposób – **tworzysz interfejs w Javie**, dodajesz adnotacje i Spring generuje klienta HTTP automatycznie.
