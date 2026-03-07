@@ -300,6 +300,50 @@ class MusicServiceTest {
 ```
 Jeśli używasz rekordów zamiast String, to w thenReturn(...) zwracasz ItunesSearchResponse(...).
 
+
+## Przykład zapytania reddit 
+https://www.reddit.com/r/java/top.json?limit=1&t=year
+
+robi dokładnie to:
+
+/r/java/ → bierze posty z subreddita r/java
+
+top.json → zwraca listę postów posortowaną według TOP (najwięcej upvote’ów) w formacie JSON
+
+limit=1 → zwraca tylko 1 post (najlepszy)
+
+t=year → zakres czasu: ostatni rok (może być też np. day, week, month, all)
+
+Co dostajesz w odpowiedzi (najważniejsze pola)
+
+W JSON-ie masz m.in.:
+
+data.children[0].data.title → tytuł posta
+
+data.children[0].data.author → autor
+
+data.children[0].data.ups / score → punkty
+
+data.children[0].data.permalink → link względny do posta
+
+data.children[0].data.url → link do treści (np. obrazek/link)
+
+data.after → token do paginacji (do następnej strony wyników)
+
+Do czego to się przydaje (praktyczne zastosowania)
+
+Top post dnia/tygodnia/roku → na stronę “Java news”
+
+Agregator treści: zbierasz TOP N i wyświetlasz w swojej aplikacji
+
+Alerty: “jeśli post ma > X upvote’ów, wyślij powiadomienie”
+
+Analiza trendów: porównujesz TOP z różnych zakresów czasu (day vs year)
+
+Demo do OpenFeign: świetny przykład API GET + parametry + JSON
+
+
+
 ### Najczęstsze problemy (szybkie fixy)
 
 ## Brak @EnableFeignClients → klient nie wstrzyknie się (NoSuchBeanDefinition).
