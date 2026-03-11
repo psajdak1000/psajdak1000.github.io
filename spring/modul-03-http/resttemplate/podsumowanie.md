@@ -48,3 +48,44 @@ Spring obecnie promuje WebClient (część modułu WebFlux).
 >  * Ma bardziej nowoczesne, płynne API (tzw. fluent API).
 >  * Jest bardziej wydajny przy dużej skali zapytań.
 > 
+
+You’re comparing **RestTemplate** vs **WebClient** (Spring). The file you linked is basically a **RestTemplate summary** plus a note that **WebClient is the modern replacement**.
+
+## RestTemplate (what it is + when it fits)
+**RestTemplate** is a high-level HTTP client used for calling REST APIs from Spring apps. It hides boilerplate like opening connections, handling streams, and manual JSON parsing—Spring (with e.g. Jackson) converts **Java objects ⇄ JSON** for you.
+
+### Key characteristics
+- **Blocking / synchronous**: the calling thread waits until the HTTP response comes back.
+- **“Template” style API** (like `JdbcTemplate`): common patterns are wrapped in convenience methods.
+
+### Most important methods (from the file)
+- `getForObject()` – GET and directly map body to a class (e.g., `User.class`)
+- `getForEntity()` – GET but returns `ResponseEntity<T>` (status + headers + body)
+- `postForObject()` – POST request and map response body
+- `exchange()` – most flexible (“universal”): any HTTP method, custom headers, generic return types, etc.
+
+### Typical usage pattern shown
+1) Register a bean:
+```java
+@Bean
+public RestTemplate restTemplate() { return new RestTemplate(); }
+```
+2) Inject it into a `@Service` and call:
+```java
+restTemplate.getForObject(url, Post.class);
+```
+
+## Is RestTemplate still recommended?
+The note in the file is important: since **Spring 5.0**, **RestTemplate is in “maintenance mode”** (bugfixes, no new major features). Spring’s recommended client going forward is **WebClient** (from Spring WebFlux).
+
+## WebClient (why Spring promotes it)
+The file lists the main motivations:
+- Supports **sync and async/reactive** usage (non-blocking when used reactively)
+- More modern **fluent API**
+- Often **more scalable/efficient** under high concurrency (because non-blocking I/O can use threads more efficiently)
+
+## Practical rule of thumb
+- Use **RestTemplate** if you’re in an older codebase or you just need simple, blocking calls and consistency with existing code.
+- Prefer **WebClient** for new development, especially if you expect many concurrent outbound calls or want reactive/non-blocking behavior.
+
+If you want, paste what you currently do with `RestTemplate` (a typical call + headers), and I’ll show the equivalent `WebClient` version (both blocking and reactive).
